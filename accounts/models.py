@@ -54,3 +54,13 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.phone_number
+
+
+class OTPCode(models.Model):
+  user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+  phone_number = models.CharField(max_length=11)
+  code_hash = models.CharField(max_length=128)
+  created_at = models.DateTimeField(auto_now_add=True)
+  expires_at = models.DateTimeField()
+  is_used = models.BooleanField(default=False)
+  attempts = models.PositiveSmallIntegerField(default=0)

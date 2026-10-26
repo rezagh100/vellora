@@ -15,7 +15,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
 
+        
   db:
     image: postgres:16
     container_name: vellora_db
@@ -32,6 +35,15 @@ services:
         - pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}
       interval: 5s
       timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
       retries: 5
 
 volumes:

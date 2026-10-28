@@ -3,7 +3,8 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.group_name = "vellora_chat"
+        self.conversation_id = self.scope["url_route"]["kwargs"]["conversation_id"]
+        self.group_name = f"conversation_{self.conversation_id}"
 
         await self.channel_layer.group_add(
             self.group_name,

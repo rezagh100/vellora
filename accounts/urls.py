@@ -1,10 +1,11 @@
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+
 from django.urls import path
+from rest_framework_simplejwt.views import TokenRefreshView
+
+from .views import OTPRequestView, OTPVerifyView
 
 urlpatterns = [
-    path('access/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path("auth/otp/request/", OTPRequestView.as_view(), name="otp-request"),
+    path("auth/otp/verify/", OTPVerifyView.as_view(), name="otp-verify"),
+    path("refresh/", TokenRefreshView.as_view(), name="token-refresh"),
 ]

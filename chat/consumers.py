@@ -27,7 +27,7 @@ def is_conversation_member(conversation_id, user_id):
         participants__id=user_id,
     ).exists()
 
-
+# reza : for talking with real time environment
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.group_name = None

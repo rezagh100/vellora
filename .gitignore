@@ -1,9 +1,45 @@
-venv/
-.venv/
-.env
+
+# Python
 __pycache__/
 *.py[cod]
-db.sqlite3
-.idea/
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+
+# Django
+staticfiles/
+media/
+*.log
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# IDE
 .vscode/
-.git
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Frontend
+vellora-frontend/node_modules/
+vellora-frontend/dist/
+vellora-frontend/.vite/
+
+# Local databases
+*.sqlite3
